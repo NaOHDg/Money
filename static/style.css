@@ -1,0 +1,345 @@
+/* --- 1. GENERAL SETUP & FONTS --- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+body {
+  position: relative;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px),
+    radial-gradient(circle at 1% 1%, rgba(129, 140, 248, 0.15), transparent 30%),
+    radial-gradient(
+      circle at 99% 99%,
+      rgba(99, 102, 241, 0.15),
+      transparent 40%
+    );
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+}
+
+/* --- 2. KEYFRAME ANIMATIONS --- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- 3. LAYOUT & TYPOGRAPHY --- */
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 50px;
+}
+.header-content {
+  text-align: center;
+  flex-grow: 1;
+}
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #4f46e5, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 0.8s ease-out;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0.5rem auto 0;
+  max-width: 550px;
+  animation: fadeInUp 0.8s ease-out 0.3s backwards;
+}
+
+/* --- 4. UI STATES (UPLOADER, PROCESSING, RESULTS) --- */
+.hidden {
+  display: none !important;
+}
+
+/* Uploader State */
+.uploader {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 300px;
+  padding: 40px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: fadeInUp 1s ease-out 0.6s backwards;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uploader.dragover {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  transform: scale(1.02);
+}
+.uploader.dragover .icon-bg {
+  animation: pulse 1.5s infinite;
+}
+.uploader .upload-text {
+  font-size: 1.1rem;
+  color: #1e293b;
+  margin: 1rem 0 0.25rem;
+}
+.uploader .file-types {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+.uploader .icon-bg {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.uploader .fa-image {
+  font-size: 32px;
+  color: #4f46e5;
+}
+
+/* Processing State */
+.processing-state {
+  text-align: center;
+  animation: fadeInUp 1s ease-out;
+}
+.processing-state p {
+  font-size: 1.2rem;
+  color: #475569;
+  font-weight: 600;
+}
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid #e0e7ff;
+  border-bottom-color: #4f46e5;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+/* Results State */
+.results-state {
+  width: 100%;
+  max-width: 900px;
+  animation: fadeInUp 1s ease-out;
+}
+.results-container {
+  display: flex;
+  gap: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+.image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+#resultImage {
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 16px;
+  display: block;
+}
+.results-summary h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+/* --- 5. COMPONENTS (BUTTONS, MENUS) --- */
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
+}
+.btn:hover {
+  background: #4338ca;
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(79, 70, 229, 0.3);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+}
+.btn .fa-solid {
+  margin-right: 8px;
+}
+#resetBtn {
+  margin-top: 1.5rem;
+}
+
+/* Member Menu */
+.member-menu {
+  position: absolute;
+  right: 50px;
+  display: inline-block;
+}
+.member-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  color: #334155;
+}
+.member-label:hover,
+.member-menu.active .member-label {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+.member-label i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+.member-dropdown {
+  display: block;
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  margin-top: 12px;
+  min-width: 280px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 8px;
+  z-index: 10;
+  transform-origin: top right;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.member-dropdown li {
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+.member-dropdown li:hover {
+  background-color: #f8fafc;
+  color: #4f46e5;
+}
+.member-dropdown li strong {
+  display: block;
+  font-weight: 600;
+  color: #1e293b;
+}
+.member-dropdown li span {
+  display: block;
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+.member-dropdown li:hover strong,
+.member-dropdown li:hover span {
+  color: inherit;
+}
+.member-menu.active .member-dropdown {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.member-menu.active .member-label i {
+  transform: rotate(180deg);
+}
+
+/* --- 6. RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  .main-title {
+    font-size: 2.5rem;
+  }
+  .results-container {
+    flex-direction: column;
+  }
+  #resultImage {
+    width: 100%;
+    max-width: 100%;
+  }
+}

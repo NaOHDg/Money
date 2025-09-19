@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- THAY ĐỔI TIÊU ĐỀ TẠI ĐÂY -->
+    <title>AI Vietnamese Currency Recognition</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <!-- Custom Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <!-- THAY ĐỔI TIÊU ĐỀ CHÍNH TẠI ĐÂY -->
+        <h1 class="main-title">Vietnamese Currency Recognition</h1>
+        <!-- THAY ĐỔI MÔ TẢ TẠI ĐÂY -->
+        <p class="subtitle">
+          Upload an image for our AI to classify it as 1000, 2000, 10000, 20000,
+          or 100000 VND.
+        </p>
+      </div>
+      <div class="member-menu" id="memberMenu">
+        <div class="member-label">
+          <span>Members</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <ul class="member-dropdown">
+          <li>
+            <strong>Thân Minh Nghĩa</strong>
+            <span>ID: 31231026396</span>
+          </li>
+          <li>
+            <strong>Đường Công Hoan</strong>
+            <span>ID: 31231025325</span>
+          </li>
+          <li>
+            <strong>Vũ Trần Hải Long</strong>
+            <span>ID: 31231021846</span>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <!-- STATE 1: UPLOADER -->
+      <section class="uploader" id="dropzone">
+        <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" hidden />
+        <div class="placeholder" id="placeholder">
+          <div class="image-icon-wrapper">
+            <div class="icon-bg"><i class="fa-regular fa-image"></i></div>
+          </div>
+          <p class="upload-text">
+            <strong>Drag and drop your image here</strong>
+          </p>
+          <p class="file-types">Supports: PNG, JPG, JPEG</p>
+          <button class="btn" id="selectBtn">
+            <i class="fa-solid fa-folder-open"></i>Select an Image
+          </button>
+        </div>
+      </section>
+      <!-- STATE 2: PROCESSING -->
+      <section class="processing-state hidden" id="processingState">
+        <div class="spinner"></div>
+        <p>Analyzing image...</p>
+      </section>
+      <!-- STATE 3: RESULTS -->
+      <section class="results-state hidden" id="resultsState">
+        <div class="results-container">
+          <div class="image-wrapper">
+            <img id="resultImage" src="#" alt="Result" />
+          </div>
+          <div class="results-summary">
+            <h2 id="resultsTitle">Prediction Result</h2>
+            <div id="predictionResult">
+              <!-- Result will be inserted here by JavaScript -->
+            </div>
+            <button class="btn" id="resetBtn">
+              <i class="fa-solid fa-rotate-left"></i>Try another image
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <!-- THAY ĐỔI CHÚ THÍCH FOOTER TẠI ĐÂY -->
+      <p>
+        &copy; 2025 - AI Vietnamese Currency Recognition. All rights reserved.
+      </p>
+    </footer>
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
